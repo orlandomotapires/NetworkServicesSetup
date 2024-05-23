@@ -48,7 +48,7 @@ A web server delivers web pages to clients over the HTTP or HTTPS protocols. Apa
   - Modular architecture.
   - Extensive configuration options and security features.
 - **Source**: [Apache HTTP Server Documentation](https://httpd.apache.org/docs/)
-- **Installation Script**: [install_service_Apache2.sh](https://github.com/orlandomotapires/NetworkServicesSetup/blob/main/install_service_Apache2.sh)
+- **Installation Script**: [install_service_Apache2.sh](https://github.com/orlandomotapires/NetworkServicesSetup/blob/main/install_service_WEB.sh)
 
 ## FTP (File Transfer Protocol)
 
@@ -96,9 +96,11 @@ Syslog is a protocol for logging system messages and events. It enables centrali
   - Supports both local and remote logging.
   - Can be used for monitoring and alerting.
 - **Source**: [Syslog Protocol](https://tools.ietf.org/html/rfc5424)
-- **Installation Script**: [install_service_Syslog.sh](https://github.com/orlandomotapires/NetworkServicesSetup/blob/main/install_service_Syslog.sh)
+- **Installation Script**: [install_service_Syslog.sh](https://github.com/orlandomotapires/NetworkServicesSetup/blob/main/install_service_SYSLOG.sh)
 
-## Virtual Machines
+## Using VMs and Docker for Network Services
+
+### Virtual Machines
 
 Virtual machines (VMs) allow you to run multiple operating systems on a single physical machine. Each VM has its own virtual hardware, including CPU, memory, and storage, isolated from other VMs.
 
@@ -108,9 +110,13 @@ Virtual machines (VMs) allow you to run multiple operating systems on a single p
   - Flexibility: Run different operating systems simultaneously.
   - Resource Management: Allocate and manage resources per VM.
 - **Source**: [Virtualization Basics](https://www.vmware.com/topics/glossary/content/virtual-machine.html)
-- **Installation Script**: [install_service_VM.sh](https://github.com/orlandomotapires/NetworkServicesSetup/blob/main/install_service_VM.sh)
 
-## Docker
+#### Setting Up VMs:
+
+- Use virtualization software (e.g., VirtualBox, VMware) to create VMs for each network service.
+- Configure network settings to ensure proper communication between VMs.
+
+### Docker
 
 Docker is a platform that uses containerization to run applications. Containers package an application and its dependencies, allowing it to run consistently across different environments.
 
@@ -120,19 +126,13 @@ Docker is a platform that uses containerization to run applications. Containers 
   - Portability: Containers can run consistently across different environments.
   - Scalability: Easily scale applications by running multiple container instances.
 - **Source**: [Docker Documentation](https://docs.docker.com/get-started/)
-- **Installation Script**: [install_service_Docker.sh](https://github.com/orlandomotapires/NetworkServicesSetup/blob/main/install_service_Docker.sh)
 - **Docker Kick Start Repository**: [Docker Kick Start](https://github.com/orlandomotapires/docker_kick_start)
-
-## Using VMs and Docker for Network Services
-
-### Setting Up VMs:
-
-- Use virtualization software (e.g., VirtualBox, VMware) to create VMs for each network service.
-- Configure network settings to ensure proper communication between VMs.
-
-### Using Docker:
+  
+#### Using:
 
 - Create Docker images for each network service with the necessary configurations.
 - Use Docker Compose to define and manage multi-container applications.
+
+
 
 By leveraging VMs and Docker, you can create flexible, scalable, and isolated environments for deploying and managing network services efficiently.
