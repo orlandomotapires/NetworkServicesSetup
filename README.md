@@ -1,541 +1,138 @@
-# Comandos para Habilitar os Serviços
+# Network Services Overview
 
-## Logins e Senhas 
+This document provides an overview of various network services, their purposes, and key characteristics. These services are crucial for managing and maintaining a network infrastructure.
 
-### Server Ubuntu VM
-- **username**: orlandomotausr
-- **password**: 20022
+## SSH (Secure Shell)
 
-### Ubuntu Interface Gráfica Client
-- **username**: ubuntuteste
-- **password**: 20022
+SSH is a protocol for securely accessing and managing network devices over an unsecured network. It encrypts all data transmitted, ensuring confidentiality and integrity.
 
-## Configurar Segunda Placa de Rede
+- **Purpose**: Securely access remote devices and transfer files.
+- **Key Characteristics**:
+  - Encrypted communication.
+  - Authentication mechanisms (passwords, public key).
+  - Port forwarding and tunneling.
+- **Source**: [SSH Essentials](https://www.ssh.com/ssh/protocol/)
+- **Installation Script**: [install_service_SSH.sh](https://github.com/orlandomotapires/redesservicos/instal_service_SSH.sh)
 
-1. Com a VM DESLIGADA, vá em “machine”, “settings”, “network”, e adicione um adaptador de rede adicional.
+## DHCP (Dynamic Host Configuration Protocol)
 
-2. Editar o arquivo de configuração de rede:
+DHCP is used to assign IP addresses and network configuration parameters automatically to devices on a network.
 
-    ```bash
-    sudo nano /etc/netplan/50-cloud-init.yaml
-    ```
+- **Purpose**: Automatically provide IP addresses and network settings to clients.
+- **Key Characteristics**:
+  - Reduces manual configuration.
+  - Centralized management of IP addresses.
+  - Can provide additional information like default gateway and DNS servers.
+- **Source**: [DHCP Overview](https://www.webopedia.com/definitions/dhcp/)
+- **Installation Script**: [install_service_DHCP.sh](https://github.com/orlandomotapires/redesservicos/instal_service_DHCP.sh)
 
-3. O arquivo deve ficar assim:
+## DNS (Domain Name System)
 
-    ```yaml
-    network:
-        ethernets:
-            enp0s3:
-                dhcp4: true
-            enp0s8:
-                dhcp4: false
-                addresses: [172.16.0.10/24]
-        version: 2
-    ```
+DNS translates human-readable domain names (like www.example.com) into IP addresses (like 192.168.1.1).
 
-4. Aplicar a configuração:
+- **Purpose**: Resolve domain names to IP addresses.
+- **Key Characteristics**:
+  - Hierarchical and decentralized.
+  - Improves user experience by allowing the use of memorable domain names.
+  - Caching for faster query resolution.
+- **Source**: [How DNS Works](https://www.cloudflare.com/learning/dns/what-is-dns/)
+- **Installation Script**: [install_service_DNS.sh](https://github.com/orlandomotapires/redesservicos/instal_service_DNS.sh)
 
-    ```bash
-    sudo netplan apply
-    ```
+## Web Server (Apache2)
 
-## Serviços de Rede
+A web server delivers web pages to clients over the HTTP or HTTPS protocols. Apache2 is one of the most widely used web servers.
 
-### SSH
+- **Purpose**: Host and deliver web content.
+- **Key Characteristics**:
+  - Supports static and dynamic content.
+  - Modular architecture.
+  - Extensive configuration options and security features.
+- **Source**: [Apache HTTP Server Documentation](https://httpd.apache.org/docs/)
+- **Installation Script**: [install_service_Apache2.sh](https://github.com/orlandomotapires/redesservicos/instal_service_Apache2.sh)
 
-1. Verificar o status do serviço SSH:
+## FTP (File Transfer Protocol)
 
-    ```bash
-    sudo systemctl status ssh
-    ```
+FTP is used to transfer files between a client and a server over a network. ProFTPD is a popular FTP server software.
 
-2. Iniciar o serviço SSH:
+- **Purpose**: Transfer files between systems.
+- **Key Characteristics**:
+  - Supports various authentication methods.
+  - Can be configured for anonymous access.
+  - Allows for directory and file permission management.
+- **Source**: [FTP Explained](https://www.hostinger.com/tutorials/ftp)
+- **Installation Script**: [install_service_FTP.sh](https://github.com/orlandomotapires/redesservicos/instal_service_FTP.sh)
 
-    ```bash
-    sudo systemctl start ssh
-    ```
+## NTP (Network Time Protocol)
 
-3. Habilitar o serviço SSH para iniciar automaticamente:
+NTP synchronizes the clocks of computers to a reference time source, ensuring accurate timekeeping across a network.
 
-    ```bash
-    sudo systemctl enable ssh
-    ```
+- **Purpose**: Synchronize system clocks across a network.
+- **Key Characteristics**:
+  - High precision and accuracy.
+  - Can synchronize to internet-based time servers.
+  - Essential for time-sensitive applications.
+- **Source**: [NTP Documentation](http://www.ntp.org/documentation.html)
+- **Installation Script**: [install_service_NTP.sh](https://github.com/orlandomotapires/redesservicos/instal_service_NTP.sh)
 
-4. Configurar o NAT e o port forwarding:
-    - Vá em “machine”, “settings”, “network”, escolha “NAT”, vá em “port forwarding” e crie uma linha:
-        - SSH TCP _ 22 _ 22 (underline significa em branco)
+## SMB (Server Message Block)
 
-5. Conectar via SSH pelo Windows:
-    - No Windows, execute:
+SMB is a protocol for sharing files, printers, and other resources within a network. Samba is the software that implements SMB/CIFS.
 
-    ```bash
-    ssh orlandomotausr@127.0.0.1
-    ```
+- **Purpose**: Share files and printers over a network.
+- **Key Characteristics**:
+  - Allows file and printer sharing between different operating systems.
+  - Supports network browsing and access control.
+  - Can be integrated with Windows network environments.
+- **Source**: [Samba Documentation](https://www.samba.org/samba/docs/)
+- **Installation Script**: [install_service_SMB.sh](https://github.com/orlandomotapires/redesservicos/instal_service_SMB.sh)
 
-### DHCP
+## Syslog
 
-1. Instalar o servidor DHCP:
+Syslog is a protocol for logging system messages and events. It enables centralized logging from different network devices.
 
-    ```bash
-    sudo apt install isc-dhcp-server
-    ```
+- **Purpose**: Centralized logging of system and network events.
+- **Key Characteristics**:
+  - Standardized message format.
+  - Supports both local and remote logging.
+  - Can be used for monitoring and alerting.
+- **Source**: [Syslog Protocol](https://tools.ietf.org/html/rfc5424)
+- **Installation Script**: [install_service_Syslog.sh](https://github.com/orlandomotapires/redesservicos/instal_service_Syslog.sh)
 
-2. Editar o arquivo de configuração:
+## Virtual Machines
 
-    ```bash
-    sudo nano /etc/default/isc-dhcp-server
-    ```
+Virtual machines (VMs) allow you to run multiple operating systems on a single physical machine. Each VM has its own virtual hardware, including CPU, memory, and storage, isolated from other VMs.
 
-    Insira:
+- **Purpose**: Run multiple isolated environments on a single hardware platform.
+- **Key Characteristics**:
+  - Isolation: Each VM operates independently.
+  - Flexibility: Run different operating systems simultaneously.
+  - Resource Management: Allocate and manage resources per VM.
+- **Source**: [Virtualization Basics](https://www.vmware.com/topics/glossary/content/virtual-machine.html)
+- **Installation Script**: [install_service_VM.sh](https://github.com/orlandomotapires/redesservicos/instal_service_VM.sh)
 
-    ```plaintext
-    INTERFACESv4="enp0s8"
-    ```
+## Docker
 
-3. Editar a configuração do DHCP:
+Docker is a platform that uses containerization to run applications. Containers package an application and its dependencies, allowing it to run consistently across different environments.
 
-    ```bash
-    sudo nano /etc/dhcp/dhcpd.conf
-    ```
+- **Purpose**: Simplify deployment and scaling of applications.
+- **Key Characteristics**:
+  - Lightweight: Containers share the host OS kernel, making them more efficient than VMs.
+  - Portability: Containers can run consistently across different environments.
+  - Scalability: Easily scale applications by running multiple container instances.
+- **Source**: [Docker Documentation](https://docs.docker.com/get-started/)
+- **Installation Script**: [install_service_Docker.sh](https://github.com/orlandomotapires/redesservicos/instal_service_Docker.sh)
+- **Docker Kick Start Repository**: [Docker Kick Start](https://github.com/orlandomotapires/docker_kick_start)
 
-    Comente as linhas:
+## Using VMs and Docker for Network Services
 
-    ```plaintext
-    # option domain-name "example.org";
-    # option domain-name-servers ns1.example.org, ns2.example.org;
-    ```
+### Setting Up VMs:
 
-    Insira:
+- Use virtualization software (e.g., VirtualBox, VMware) to create VMs for each network service.
+- Configure network settings to ensure proper communication between VMs.
 
-    ```plaintext
-    subnet 172.16.0.0 netmask 255.255.255.0 {
-        range 172.16.0.20 172.16.0.50;
-        option routers 172.16.0.10;
-        option subnet-mask 255.255.255.0;
-        option domain-name-servers 172.16.0.10;
-        option domain-name "eugostaumDHCP.com";
-    }
-    ```
+### Using Docker:
 
-4. Reiniciar o servidor DHCP:
+- Create Docker images for each network service with the necessary configurations.
+- Use Docker Compose to define and manage multi-container applications.
 
-    ```bash
-    sudo systemctl restart isc-dhcp-server
-    sudo systemctl enable isc-dhcp-server
-    sudo systemctl status isc-dhcp-server
-    ```
-
-5. Testar o servidor DHCP:
-
-    ```bash
-    sudo tail -f /var/log/syslog
-    sudo tail -f /var/lib/dhcp/dhcpd.leases
-    ```
-
-6. Conectar via interfaces no cliente para testar.
-
-### DNS
-
-1. Instalar o servidor DNS Bind9:
-
-    ```bash
-    sudo apt install bind9
-    ```
-
-2. Editar a configuração local do Bind9:
-
-    ```bash
-    sudo nano /etc/bind/named.conf.local
-    ```
-
-    Insira:
-
-    ```plaintext
-    zone "eugostaum.com" {
-        type master;
-        file "/etc/bind/zones/db.examples.com";
-    };
-    ```
-
-3. Editar as opções de configuração do Bind9:
-
-    ```bash
-    sudo nano /etc/bind/named.conf.options
-    ```
-
-    Insira:
-
-    ```plaintext
-    options {
-            directory "/var/cache/bind";
-
-            recursion yes;
-
-            allow-recursion {any;};
-
-            forwarders {
-                    8.8.8.8;
-                    8.8.4.4;
-            };
-
-            auth-nxdomain no;
-
-            dnssec-validation auto;
-
-            listen-on { 172.16.0.10; };
-
-            listen-on-v6 { any; };
-    };
-    ```
-
-4. Criar e configurar o arquivo de zona:
-
-    ```bash
-    sudo mkdir /etc/bind/zones
-    sudo touch /etc/bind/zones/db.examples.com
-    sudo nano /etc/bind/zones/db.examples.com
-    ```
-
-    Insira:
-
-    ```plaintext
-    $TTL    604800
-    @       IN      SOA     ns1.eugostaum.com. admin.eugostaum.com. (
-                          2024051801         ; Serial
-                                604800         ; Refresh
-                                 86400         ; Retry
-                               2419200         ; Expire
-                                604800 )       ; Negative Cache TTL
-    ;
-    @       IN      NS      ns1.eugostaum.com.
-    @       IN      A       172.16.0.10
-    ns1     IN      A       172.16.0.10
-    www     IN      A       172.16.0.10
-    ```
-
-5. Verificar a configuração do Bind9:
-
-    ```bash
-    sudo named-checkconf
-    sudo named-checkzone eugostaum.com /etc/bind/zones/db.examples.com
-    ```
-
-6. Reiniciar e verificar o status do Bind9:
-
-    ```bash
-    sudo systemctl restart bind9
-    sudo systemctl status bind9
-    ```
-
-7. Testar o DNS no cliente:
-    - Conectar na internet, receber um IP via DHCP do servidor, entrar no terminal e pingar o IP do servidor:
-
-    ```bash
-    (Máquina servidor) sudo tcpdump -i enp0s8 icmp
-    (Máquina cliente) ping eugostaum.com
-    ```
-
-### WEB
-
-1. Instalar o Apache2:
-
-    ```bash
-    sudo apt update
-    sudo apt install apache2
-    ```
-
-2. Verificar o status do Apache2:
-
-    ```bash
-    sudo systemctl status apache2
-    ```
-
-3. Testar no cliente:
-    - Inserir o DNS no navegador e verificar se a página `index.html` do Apache abre no navegador.
-
-### FTP
-
-1. Instalar o servidor FTP ProFTPD:
-
-    ```bash
-    sudo apt install proftpd
-    ```
-
-2. Editar a configuração do ProFTPD:
-
-    ```bash
-    sudo nano /etc/proftpd/proftpd.conf
-    ```
-
-    Insira:
-
-    ```plaintext
-    ServerName "EugostaumServer"
-    ServerType standalone
-
-    DefaultRoot ~
-    RequireValidShell off
-    Port 21
-    ```
-
-3. Reiniciar e verificar o status do ProFTPD:
-
-    ```bash
-    sudo systemctl restart proftpd
-    sudo systemctl status proftpd
-    netstat -an | grep :21
-    ```
-
-4. Instalar o FileZilla no cliente, conectar pelo IP do servidor e mover os arquivos.
-
-### NTP
-
-1. Instalar o NTP:
-
-    ```bash
-    sudo apt install ntp
-    ```
-
-2. Editar a configuração do NTP:
-
-    ```bash
-    sudo nano /etc/ntpsec/ntp.conf
-    ```
-
-    Insira:
-
-    ```plaintext
-    # /etc/ntp.conf: configuração do servidor NTP
-
-    # Servidores NTP públicos do pool NTP
-    pool 0.ubuntu.pool.ntp.org iburst
-    pool 1.ubuntu.pool.ntp.org iburst
-    pool 2.ubuntu.pool.ntp.org iburst
-    pool 3.ubuntu.pool.ntp.org iburst
-
-    # Restrições de acesso
-    restrict default kod nomodify notrap nopeer noquery
-    restrict -6 default kod nomodify notrap nopeer noquery
-
-    # Permitir acesso local
-    restrict 127.0.0.1
-    restrict ::1
-
-    # Permitir acesso de uma sub-rede específica (substitua pela sua sub-rede)
-    restrict 172.16.0.10 mask 255.255.255.0 nomodify notrap
-
-    # Drift file
-    driftfile /var/lib/ntp/ntp.drift
-
-    # Servidor de log
-    logfile /var/log/ntp.log
-
-    # Configuração de estatísticas (opcional)
-    statsdir /var/log/ntpstats/
-    statistics loopstats peerstats clockstats
-    filegen loopstats file loopstats type day enable
-    filegen peerstats file peerstats type day enable
-    filegen clockstats file clockstats type day enable
-    ```
-
-3. Reiniciar e habilitar o NTP:
-
-    ```bash
-    sudo systemctl restart ntp
-    sudo systemctl enable ntp
-    sudo systemctl status ntp
-    ```
-
-4. Verificar o status do NTP:
-
-    ```bash
-    ntpq -p
-    ```
-5. Configurar o cliente NTP:
-
-    ```bash
-    sudo apt install ntp
-    sudo nano /etc/ntp.conf
-    ```
-
-    Insira:
-
-    ```plaintext
-    # /etc/ntp.conf: configuração do cliente NTP
-
-    # Servidor NTP do servidor específico
-    server 172.16.0.10 iburst
-
-    # Restrições de acesso
-    restrict default kod nomodify notrap nopeer noquery
-    restrict -6 default kod nomodify notrap nopeer noquery
-
-    # Permitir acesso local
-    restrict 127.0.0.1
-    restrict ::1
-
-    # Drift file
-    driftfile /var/lib/ntp/ntp.drift
-
-    # Servidor de log
-    logfile /var/log/ntp.log
-
-    # Configuração de estatísticas (opcional)
-    statsdir /var/log/ntpstats/
-    statistics loopstats peerstats clockstats
-    filegen loopstats file loopstats type day enable
-    filegen peerstats file peerstats type day enable
-    filegen clockstats file clockstats type day enable
-    ```
-
-6. Reiniciar e verificar o status do NTP no cliente:
-
-    ```bash
-    sudo systemctl restart ntp
-    sudo systemctl enable ntp
-    sudo systemctl status ntp
-    ```
-
-7. Verificar se o cliente está sincronizando com o servidor:
-
-    ```bash
-    ntpq -p
-    ```
-
-## SMB (Grupo Revelação)
-
-1. Instalar o Samba:
-
-    ```bash
-    sudo apt update
-    sudo apt install samba
-    ```
-
-2. Editar a configuração do Samba:
-
-    ```bash
-    sudo nano /etc/samba/smb.conf
-    ```
-
-    Insira:
-
-    ```plaintext
-    [global]
-       workgroup = WORKGROUP
-       server string = %h server (Samba, Ubuntu)
-       log file = /var/log/samba/log.%m
-       max log size = 1000
-       logging = file
-       panic action = /usr/share/samba/panic-action %d
-       server role = standalone server
-       obey pam restrictions = yes
-       unix password sync = yes
-       passwd program = /usr/bin/passwd %u
-       passwd chat = *Enter\snew\s*\spassword:* %n\n *Retype\snew\s*\spassword:* %n\n *password\supdated\ssuccessfully* .
-       pam password change = yes
-       map to guest = bad user
-       usershare allow guests = yes
-
-    [public]
-       path = /srv/samba/public
-       browsable = yes
-       writable = yes
-       guest ok = yes
-       read only = no
-    ```
-
-3. Criar o diretório compartilhado e ajustar permissões:
-
-    ```bash
-    sudo mkdir -p /srv/samba/public
-    sudo chown nobody:nogroup /srv/samba/public
-    sudo chmod 0775 /srv/samba/public
-    ```
-
-4. Reiniciar os serviços do Samba:
-
-    ```bash
-    sudo systemctl restart smbd
-    sudo systemctl restart nmbd
-    ```
-
-5. Testar o Samba no servidor:
-
-    ```bash
-    smbclient //server_ip/public -U guest -N
-    ```
-
-6. Acessar a pasta compartilhada pelo cliente Ubuntu:
-    - Abrir o gerenciador de arquivos no cliente Ubuntu.
-    - No campo de endereço, inserir: `smb://172.16.0.10/public`
-    - Pressionar Enter para acessar a pasta pública compartilhada.
-
-## SYSLOG
-
-1. Instalar o rsyslog:
-
-    ```bash
-    sudo apt install rsyslog rsyslog-doc
-    ```
-
-2. Editar a configuração do rsyslog:
-
-    ```bash
-    sudo nano /etc/rsyslog.conf
-    ```
-
-    Modifique o bloco de modules:
-
-    ```plaintext
-    #################
-    #### MODULES ####
-    #################
-
-    module(load="imuxsock") # provides support for local system logging
-    #module(load="immark")  # provides --MARK-- message capability
-
-    # provides UDP syslog reception
-    module(load="imudp")
-    input(type="imudp" port="514")
-
-    # provides TCP syslog reception
-    module(load="imtcp")
-    input(type="imtcp" port="514")
-
-    # provides kernel logging support and enable non-kernel klog messages
-    module(load="imklog" permitnonkernelfacility="on")
-    ```
-
-3. Reiniciar e verificar o status do rsyslog:
-
-    ```bash
-    sudo systemctl restart rsyslog.service
-    sudo systemctl status rsyslog
-    netstat -na | grep :514
-    ```
-
-4. Testar o syslog:
-    - No servidor, execute:
-
-    ```bash
-    logger "teste"
-    ```
-
-    - Inserir no final do arquivo `/etc/rsyslog.conf` do CLIENTE:
-
-    ```plaintext
-    *.* @172.16.0.10:514    	(udp)
-    *.* @@172.16.0.10:514		(tcp)
-    ```
-
-    - Reiniciar o rsyslog no cliente:
-
-    ```bash
-    sudo systemctl restart rsyslog
-    ```
-
-    - Verificar no servidor se os logs estão sendo recebidos.
-
----
-
-Agora você tem todas as configurações e comandos necessários para habilitar e testar os serviços mencionados no seu ambiente Ubuntu.
+By leveraging VMs and Docker, you can create flexible, scalable, and isolated environments for deploying and managing network services efficiently.
