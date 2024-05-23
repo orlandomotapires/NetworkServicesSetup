@@ -12,7 +12,7 @@ SSH is a protocol for securely accessing and managing network devices over an un
   - Authentication mechanisms (passwords, public key).
   - Port forwarding and tunneling.
 - **Source**: [SSH Essentials](https://www.ssh.com/ssh/protocol/)
-- **Installation Script**: [install_service_SSH.sh](https://github.com/orlandomotapires/redesservicos/instal_service_SSH.sh)
+- **Installation Script**: [install_service_SSH.sh](https://github.com/orlandomotapires/NetworkServicesSetup/blob/main/install_service_SSH.sh)
 
 ## DHCP (Dynamic Host Configuration Protocol)
 
@@ -24,7 +24,7 @@ DHCP is used to assign IP addresses and network configuration parameters automat
   - Centralized management of IP addresses.
   - Can provide additional information like default gateway and DNS servers.
 - **Source**: [DHCP Overview](https://www.webopedia.com/definitions/dhcp/)
-- **Installation Script**: [install_service_DHCP.sh](https://github.com/orlandomotapires/redesservicos/instal_service_DHCP.sh)
+- **Installation Script**: [install_service_DHCP.sh](https://github.com/orlandomotapires/NetworkServicesSetup/blob/main/install_service_DHCP.sh)
 
 ## DNS (Domain Name System)
 
@@ -36,7 +36,7 @@ DNS translates human-readable domain names (like www.example.com) into IP addres
   - Improves user experience by allowing the use of memorable domain names.
   - Caching for faster query resolution.
 - **Source**: [How DNS Works](https://www.cloudflare.com/learning/dns/what-is-dns/)
-- **Installation Script**: [install_service_DNS.sh](https://github.com/orlandomotapires/redesservicos/instal_service_DNS.sh)
+- **Installation Script**: [install_service_DNS.sh](https://github.com/orlandomotapires/NetworkServicesSetup/blob/main/install_service_DNS.sh)
 
 ## Web Server (Apache2)
 
@@ -48,7 +48,7 @@ A web server delivers web pages to clients over the HTTP or HTTPS protocols. Apa
   - Modular architecture.
   - Extensive configuration options and security features.
 - **Source**: [Apache HTTP Server Documentation](https://httpd.apache.org/docs/)
-- **Installation Script**: [install_service_Apache2.sh](https://github.com/orlandomotapires/redesservicos/instal_service_Apache2.sh)
+- **Installation Script**: [install_service_Apache2.sh](https://github.com/orlandomotapires/NetworkServicesSetup/blob/main/install_service_Apache2.sh)
 
 ## FTP (File Transfer Protocol)
 
@@ -60,7 +60,7 @@ FTP is used to transfer files between a client and a server over a network. ProF
   - Can be configured for anonymous access.
   - Allows for directory and file permission management.
 - **Source**: [FTP Explained](https://www.hostinger.com/tutorials/ftp)
-- **Installation Script**: [install_service_FTP.sh](https://github.com/orlandomotapires/redesservicos/instal_service_FTP.sh)
+- **Installation Script**: [install_service_FTP.sh](https://github.com/orlandomotapires/NetworkServicesSetup/blob/main/install_service_FTP.sh)
 
 ## NTP (Network Time Protocol)
 
@@ -72,7 +72,7 @@ NTP synchronizes the clocks of computers to a reference time source, ensuring ac
   - Can synchronize to internet-based time servers.
   - Essential for time-sensitive applications.
 - **Source**: [NTP Documentation](http://www.ntp.org/documentation.html)
-- **Installation Script**: [install_service_NTP.sh](https://github.com/orlandomotapires/redesservicos/instal_service_NTP.sh)
+- **Installation Script**: [install_service_NTP.sh](https://github.com/orlandomotapires/NetworkServicesSetup/blob/main/install_service_NTP.sh)
 
 ## SMB (Server Message Block)
 
@@ -84,7 +84,7 @@ SMB is a protocol for sharing files, printers, and other resources within a netw
   - Supports network browsing and access control.
   - Can be integrated with Windows network environments.
 - **Source**: [Samba Documentation](https://www.samba.org/samba/docs/)
-- **Installation Script**: [install_service_SMB.sh](https://github.com/orlandomotapires/redesservicos/instal_service_SMB.sh)
+- **Installation Script**: [install_service_SMB.sh](https://github.com/orlandomotapires/NetworkServicesSetup/blob/main/install_service_SMB.sh)
 
 ## Syslog
 
@@ -96,7 +96,7 @@ Syslog is a protocol for logging system messages and events. It enables centrali
   - Supports both local and remote logging.
   - Can be used for monitoring and alerting.
 - **Source**: [Syslog Protocol](https://tools.ietf.org/html/rfc5424)
-- **Installation Script**: [install_service_Syslog.sh](https://github.com/orlandomotapires/redesservicos/instal_service_Syslog.sh)
+- **Installation Script**: [install_service_Syslog.sh](https://github.com/orlandomotapires/NetworkServicesSetup/blob/main/install_service_Syslog.sh)
 
 ## Virtual Machines
 
@@ -108,7 +108,7 @@ Virtual machines (VMs) allow you to run multiple operating systems on a single p
   - Flexibility: Run different operating systems simultaneously.
   - Resource Management: Allocate and manage resources per VM.
 - **Source**: [Virtualization Basics](https://www.vmware.com/topics/glossary/content/virtual-machine.html)
-- **Installation Script**: [install_service_VM.sh](https://github.com/orlandomotapires/redesservicos/instal_service_VM.sh)
+- **Installation Script**: [install_service_VM.sh](https://github.com/orlandomotapires/NetworkServicesSetup/blob/main/install_service_VM.sh)
 
 ## Docker
 
@@ -120,7 +120,7 @@ Docker is a platform that uses containerization to run applications. Containers 
   - Portability: Containers can run consistently across different environments.
   - Scalability: Easily scale applications by running multiple container instances.
 - **Source**: [Docker Documentation](https://docs.docker.com/get-started/)
-- **Installation Script**: [install_service_Docker.sh](https://github.com/orlandomotapires/redesservicos/instal_service_Docker.sh)
+- **Installation Script**: [install_service_Docker.sh](https://github.com/orlandomotapires/NetworkServicesSetup/blob/main/install_service_Docker.sh)
 - **Docker Kick Start Repository**: [Docker Kick Start](https://github.com/orlandomotapires/docker_kick_start)
 
 ## Using VMs and Docker for Network Services
