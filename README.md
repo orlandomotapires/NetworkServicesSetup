@@ -2,6 +2,11 @@
 
 This document provides an overview of various network services, their purposes, and key characteristics. These services are crucial for managing and maintaining a network infrastructure.
 
+## Authors: 
+
+- [Gabriel Souza Dunkel](https://github.com/gabrielsdunkel)
+- [Orlando Mota Pires](https://github.com/orlandomotapires)
+
 ## SSH (Secure Shell)
 
 SSH is a protocol for securely accessing and managing network devices over an unsecured network. It encrypts all data transmitted, ensuring confidentiality and integrity.
